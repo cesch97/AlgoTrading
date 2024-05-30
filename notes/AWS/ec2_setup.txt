@@ -1,0 +1,117 @@
+
+### AWS Notes ###
+
+# EFS-1 #
+ - id: fs-63509838
+ - created: 01/04/21
+ - one zone (eu-central-1a)
+ - $0.192(gb/m) - €0.78(gb/m)
+# - - - #
+
+# EC2 -> 1-2
+ - id: i-0730af9ca2ae76561
+ - created: 01/04/21
+ - eu-central-1a
+ - t3a.small - 2(vcpu), 2(gb ram)
+ - Amazon Linux - AMI 2
+ - 0.019($/h) - 0.016(€/h) - 0.39(€/d)
+ - default security group (edited to grant access from everywhere) 
+ - mounted EFS-1: - sudo yum install -y amazon-efs-utils
+ 		  - mkdir efs-1
+ 		  - sudo mount -t efs -o tls fs-63509838:/ efs-1
+ 		  - sudo chmod ugo+rwx efs-1
+ 		  - sudo nano /etc/fstab
+ 		    - fs-63509838:/ /home/ec2-user/efs-1 efs defaults,_netdev 0 0
+  - Install Julia-1.5.0:
+                       - wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.0-linux-x86_64.tar.gz
+					   - tar zxvf julia-1.5.0-linux-x86_64.tar.gz
+					   - nano .bashrc
+					       - export EDITOR=/bin/nano
+					       - export PATH="$PATH:/home/ec2-user/julia-1.5.0/bin"
+						   - export JULIA_DEPOT_PATH="/home/ec2-user/.julia"
+						   - export GKSwstype=100
+					   - source .bashrc
+ - Set-up "AlgoTrading" project: - (localy) scp -r /home/fabio/julia-projects/AlgoTrading myec2server:/home/ec2-user/efs-1 # is inside "upload_project.sh"
+ 				- cd efs-1/AlgoTrading
+ 				- julia
+ 				- ]
+ 				- activate .
+ 				- instantiate
+				- precompile 
+
+
+# EC2 -> 3-4
+ - id: i-0b2913f9640081c45
+ - created: 13/04/21
+ - eu-central-1a
+ - detailed monitoring: enabled
+ - types
+    - c5.4xlarge - 16(vcpu), 32(gb ram) # 3
+    - c5a.8xlarge - 32(vcpu), 64(gb ram) # 4
+ - Amazon Linux - AMI 2
+ - pricing
+    - 0.265($/h) - 0.223(€/h) -  5.342(€/d) # 3
+    - 0.531($/h) - 0.446(€/h) - 10.705(€/d) # 4
+ - default security group (edited to grant access from everywhere) 
+ - mounted EFS-1: - sudo yum install -y amazon-efs-utils
+ 		  - mkdir efs-1
+ 		  - sudo mount -t efs -o tls fs-63509838:/ efs-1
+ 		  - sudo chmod ugo+rwx efs-1
+ 		  - sudo nano /etc/fstab
+ 		    - fs-63509838:/ /home/ec2-user/efs-1 efs defaults,_netdev 0 0
+ - Install Julia-1.5.0:
+                       - sudo yum groupinstall 'Development Tools'
+					   - sudo yum install make gcc gcc-c++ libatomic python gcc-gfortran perl wget m4 patch pkgconfig
+					   - sudo yum autoremove cmake
+					   - wget https://github.com/JuliaLang/julia/archive/v1.5.0.tar.gz
+					   - tar -xzvf v1.5.0.tar.gz
+					   - #opt# rm xzvf v1.5.0.tar.gz
+					   - cd julia-1.5.0
+					   - ./contrib/download_cmake.sh
+					   - make -j16 # num vcpu
+					   - nano .bashrc
+					       - export EDITOR=/bin/nano
+					       - export PATH="$PATH:/home/ec2-user/julia-1.5.0"
+						   - export JULIA_DEPOT_PATH="/home/ec2-user/.julia"
+						   - export JULIA_NUM_THREADS=1
+						   - export OPENBLAS_NUM_THREADS=1
+						   - export GKSwstype=100
+					   - source .bashrc
+ - Set-up "AlgoTrading" project: - (localy) scp -r /home/fabio/julia-projects/AlgoTrading myec2server:/home/ec2-user/efs-1
+ 				- cd efs-1/AlgoTrading
+ 				- julia
+ 				- ]
+ 				- activate .
+ 				- instantiate
+				- precompile 
+ - Set-up cron-Job for persisting across reboots 
+   - 
+   - crontab -e
+     - SHELL=/bin/bash
+	 - depending on the machine:
+		- @reboot sleep 120 && sh /home/ec2-user/efs-1/AlgoTrading/train_strat-persist.sh # 3
+		- @reboot sleep 120 && sh /home/ec2-user/efs-1/AlgoTrading/train_trad_sys-persist.sh # 4
+
+ - Set up AWS-CLI for S3-backup
+   - # (done!) # || From AWS-Console -> Account -> My security credentials -> Create new key
+   - On EC2
+     - aws configure
+	   - AWS Access Key ID [None]: ...
+	   - AWS Secret Access Key [None]: ...
+	   - Default region name [None]: eu-central-1
+	   - Default output format [None]:
+
+- Set-up cron-Job for s3-backup every 3 hours
+   - crontab -e
+     - (SHELL=/bin/bash)
+     - 0 */3 * * * sh /home/ec2-user/efs-1/AlgoTrading/scripts/s3-backup.sh  
+
+ 
+# EC2-5
+ - id: i-0e68d67d0c57299b0
+ - created: 05/04/21
+ - eu-central-1a
+ - t3a.small - 2(vcpu), 2(gb ram)
+ - 0.0372($/h) - 0.032(€/h) - 0.76(€/d)
+ - default security group (edited to grant access from everywhere) 
+ - WIndows Server 2019 - Base

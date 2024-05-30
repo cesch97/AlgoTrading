@@ -1,0 +1,33 @@
+symbols:
+  - "EURUSD"
+  - "GBPUSD"
+  - "USDJPY"
+  - "USDCHF"
+  - "USDCAD"
+  - "AUDUSD"
+  - "NZDUSD"
+  - "EURGBP"
+  - "EURJPY"
+  - "EURCHF"
+  - "GBPCHF"
+  - "GBPJPY"
+  - "AUDCAD"
+  - "EURCAD"
+  - "AUDNZD"
+  - "AUDJPY"
+  - "CHFJPY"
+excl_ts: ~
+sim_date_from: 2020-10-31T00:00:00
+sim_date_to: 2021-05-22T00:00:00
+init_balance: 1000
+force_init_balance: true
+fit_disc_rate: 0.999
+fit_cv_coef: 0.5
+acc_curr: "EUR"
+risk: 0.02
+commission: 4.5e-5
+num_results: 5
+log_name: "trad_sys_eval-1"
+cuda: false
+desc: "All the pairs, 11/2020-05/2021, low balance: 1000€, show: 5 best res."
+analysis_conf_file: null

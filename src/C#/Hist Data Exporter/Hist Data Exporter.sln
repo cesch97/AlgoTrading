@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hist Data Exporter", "Hist Data Exporter\Hist Data Exporter.csproj", "{540FAAD1-14DF-4561-B3C8-06C085BB785A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{540FAAD1-14DF-4561-B3C8-06C085BB785A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{540FAAD1-14DF-4561-B3C8-06C085BB785A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540FAAD1-14DF-4561-B3C8-06C085BB785A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{540FAAD1-14DF-4561-B3C8-06C085BB785A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

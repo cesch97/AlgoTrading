@@ -1,0 +1,18 @@
+local:
+  data_dir: "/data/AlgoTrading/hist_data"
+  strats_dir: "/data/AlgoTrading/strategies"
+  trad_sys_dir: "/data/AlgoTrading/trad_systems"
+  evals_dir: "/data/AlgoTrading/evals"
+  clean_dir: "/data/AlgoTrading/cleaning"
+  trad_logs_dir: "/data/AlgoTrading/trad_logs"
+  analysis_dir: "/data/AlgoTrading/analysis"
+
+ec2:
+  data_dir: "/home/ec2-user/efs-1/Data/hist_data"
+  strats_dir: "/home/ec2-user/efs-1/Data/strategies"
+  trad_sys_dir: "/home/ec2-user/efs-1/Data/trad_systems"
+  evals_dir: "/home/ec2-user/efs-1/Data/evals"
+  clean_dir: "/home/ec2-user/efs-1/Data/cleaning"
+  trad_logs_dir: "/home/ec2-user/efs-1/Data/trad_logs"
+  analysis_dir: "/home/ec2-user/efs-1/Data/AlgoTrading/analysis"
+  

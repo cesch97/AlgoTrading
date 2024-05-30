@@ -1,0 +1,8 @@
+port_num: 8080
+master_log: "__Master__"
+trad_sys_name: "trad-sys_creat_A-14"
+start_from: 2020-10-31T00:00:00
+num_old_bars: 205
+risk: 0.02
+acc_curr: "EUR"
+force_init_balance: true

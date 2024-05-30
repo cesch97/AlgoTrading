@@ -1,0 +1,37 @@
+symbols:
+  - "EURUSD"
+  - "GBPUSD"
+  - "USDJPY"
+  - "USDCHF"
+  - "USDCAD"
+  - "AUDUSD"
+  - "NZDUSD"
+  - "EURGBP"
+  - "EURJPY"
+  - "EURCHF"
+  - "GBPCHF"
+  - "GBPJPY"
+  - "AUDCAD"
+  - "EURCAD"
+  - "AUDNZD"
+  - "AUDJPY"
+  - "CHFJPY"
+time_frames:
+  - "Minute"
+  - "Minute5"
+  - "Minute15"
+  - "Hour"
+  - "Hour4"
+excl_strats: ~
+sim_date_from: 2019-06-01T00:00:00
+sim_date_to: 2021-04-25T00:00:00
+init_balance: 100
+acc_curr: "EUR"
+risk: 0.02
+commission: 4.5e-5
+fit_disc_rate: 0.999
+fit_cv_coef: 0.5
+num_results: 100
+log_name: "strat_clean-1"
+cuda: false
+desc: "All the pairs, all time-frames, 06/2019-04/2021, low balance: 100€, keep: 100 strats"

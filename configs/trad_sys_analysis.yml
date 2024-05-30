@@ -1,0 +1,30 @@
+symbols:
+  - "EURUSD"
+  - "GBPUSD"
+  - "USDJPY"
+  - "USDCHF"
+  - "USDCAD"
+  - "AUDUSD"
+  - "NZDUSD"
+  - "EURGBP"
+  - "EURJPY"
+  - "EURCHF"
+  - "GBPCHF"
+  - "GBPJPY"
+  - "AUDCAD"
+  - "EURCAD"
+  - "AUDNZD"
+  - "AUDJPY"
+  - "CHFJPY"
+trad_sys_name: "trad-sys_creat_A-8"
+sim_date_from: 2020-10-31T00:00:00
+sim_date_to: 2021-05-22T00:00:00
+init_balance: 1000
+force_init_balance: true
+fit_disc_rate: 0.999
+fit_cv_coef: 0.5
+acc_curr: "EUR"
+risk: 0.02
+commission: 4.5e-5
+cuda: false
+log_name: "trad_sys_analysis-1"
